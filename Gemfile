@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 group :rake, :test do
   gem 'rake',                   '~> 10.4.2'
   gem 'rspec',                  '~> 3.2.0'
-  gem 'puppetlabs_spec_helper', '~> 0.8.2'
 end
 
 group :rake, :development do
