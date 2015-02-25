@@ -3,7 +3,7 @@
   "version": "0.0.3",
   "author": "Joshua Michael Keyes <joshua.michael.keyes@gmail.com>",
   "summary": "Send Puppet reports to a local Sensu client.",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "source": "https://github.com/jmkeyes/puppet-sensu_reporter",
   "project_page": "https://github.com/jmkeyes/puppet-sensu_reporter",
   "issues_url": "https://github.com/jmkeyes/puppet-sensu_reporter/issues",
