@@ -52,7 +52,7 @@ Puppet::Reports.register_report(:sensu) do
   end
 
   def process
-    Puppet.debug "Sending report for #{self.host} as check to local Sensu client at 127.0.0.1:3030."
+    Puppet.debug "Sending report status for #{self.host} as check to local Sensu client at 127.0.0.1:3030."
     submit(check_data)
   end
 end
