@@ -45,11 +45,12 @@ Puppet::Reports.register_report(:sensu) do
     }
   end
 
+  def socket
+    @socket ||= UDPSocket.new.tap { |socket| socket.connect('127.0.0.1', 3030) }
+  end
+
   def submit(data = {})
-    UDPSocket.new.tap do |socket|
-      socket.connect('127.0.0.1', 3030)
-      socket.send(data.to_json + "\n", 0)
-    end
+    socket.send(data.to_json + "\n", 0)
   end
 
   def process
