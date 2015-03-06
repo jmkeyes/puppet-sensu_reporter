@@ -23,24 +23,24 @@ Puppet::Reports.register_report(:sensu) do
     "puppet-#{check_source}"
   end
 
-  def check_status
-    {
-      'failed'    => 1,
-      'changed'   => 0,
-      'unchanged' => 0
-    }[self.status] || 3
+  def check_code
+    (self.status == 'failed') ? 1 : 0
   end
 
-  def check_message
-    "Puppet run for #{self.host} #{self.status} at #{Time.now.asctime} on #{self.configuration_version} in #{self.environment}"
+  def check_state
+    (self.status == 'failed') ? 'WARNING' : 'OK'
+  end
+
+  def check_output
+    "#{check_state} - Puppet run for #{self.host} #{self.status} at #{Time.now.asctime} on #{self.configuration_version} in #{self.environment}"
   end
 
   def check_data
     {
       'name'    => check_name,
+      'status'  => check_code,
       'source'  => check_source,
-      'status'  => check_status,
-      'output'  => check_message,
+      'output'  => check_output,
     }
   end
 
@@ -52,7 +52,7 @@ Puppet::Reports.register_report(:sensu) do
   end
 
   def process
-    Puppet.debug "Sending report for #{self.host} to local Sensu client at 127.0.0.1:3030."
+    Puppet.debug "Sending report for #{self.host} as check to local Sensu client at 127.0.0.1:3030."
     submit(check_data)
   end
 end
