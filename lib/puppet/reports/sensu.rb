@@ -20,7 +20,7 @@ Puppet::Reports.register_report(:sensu) do
   end
 
   def check_name
-    "puppet-#{check_source}"
+    "puppet-report-#{check_source}"
   end
 
   def check_code
