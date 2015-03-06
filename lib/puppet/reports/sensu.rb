@@ -37,6 +37,7 @@ Puppet::Reports.register_report(:sensu) do
 
   def check_data
     {
+      'type'    => 'check',
       'name'    => check_name,
       'status'  => check_code,
       'source'  => check_source,
